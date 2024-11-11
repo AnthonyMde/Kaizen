@@ -1,12 +1,11 @@
 import 'package:challenge_365d/providers/date_provider.dart';
+import 'package:challenge_365d/ui/screens/home/header.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 
-class HomePage extends ConsumerWidget {
-  const HomePage({super.key, required this.title});
-
-  final String title;
+class HomeScreen extends ConsumerWidget {
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -26,20 +25,8 @@ class HomePage extends ConsumerWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
                 const SizedBox(height: 16.0),
-                Text(
-                  formattedDate,
-                  style: const TextStyle(
-                      fontSize: 20,
-                      fontStyle: FontStyle.italic,
-                      color: Colors.black87),
-                ),
-                Text(
-                  "${pastDays.toString()} days",
-                  style: const TextStyle(
-                      fontSize: 28,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.deepOrangeAccent),
-                ),
+                Header(
+                    formattedDate: formattedDate, pastDays: pastDays.toString())
               ],
             ),
           ),
