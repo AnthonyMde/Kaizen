@@ -1,0 +1,4 @@
+# Mark Freezed and JSON generated files as linguist-generated
+# (GitHub will collapse them in PRs)
+*.freezed.dart linguist-generated
+*.g.dart linguist-generated

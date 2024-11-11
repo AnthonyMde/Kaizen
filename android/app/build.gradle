@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.challenge_365d"
+    //namespace = "com.example.challenge_365d"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
