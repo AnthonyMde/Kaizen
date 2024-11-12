@@ -1,8 +1,8 @@
-import 'package:challenge_365d/domain/models/challenger_card.dart';
-import 'package:challenge_365d/providers/date_provider.dart';
-import 'package:challenge_365d/providers/home_screen_provider.dart';
-import 'package:challenge_365d/ui/screens/home/challenger_view.dart';
-import 'package:challenge_365d/ui/screens/home/header.dart';
+import 'package:kaizen/domain/models/challenger.dart';
+import 'package:kaizen/providers/date_provider.dart';
+import 'package:kaizen/providers/home_screen_provider.dart';
+import 'package:kaizen/ui/screens/home/challenger_view.dart';
+import 'package:kaizen/ui/screens/home/header.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';

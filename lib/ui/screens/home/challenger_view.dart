@@ -1,5 +1,5 @@
-import 'package:challenge_365d/domain/models/challenger_card.dart';
-import 'package:challenge_365d/ui/screens/home/challenge_view.dart';
+import 'package:kaizen/domain/models/challenger.dart';
+import 'package:kaizen/ui/screens/home/challenge_view.dart';
 import 'package:flutter/material.dart';
 
 class ChallengerView extends StatelessWidget {

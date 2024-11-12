@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'challenger_card.freezed.dart';
+part 'challenger.freezed.dart';
 
 @freezed
 class Challenger with _$Challenger {

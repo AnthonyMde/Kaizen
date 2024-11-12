@@ -1,5 +1,5 @@
-import 'package:challenge_365d/domain/models/challenger_card.dart';
-import 'package:challenge_365d/ui/screens/home/home_screen_state.dart';
+import 'package:kaizen/domain/models/challenger.dart';
+import 'package:kaizen/ui/screens/home/home_screen_state.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 List<Challenger> getMockedChallengers = [

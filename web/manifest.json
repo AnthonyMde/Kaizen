@@ -1,6 +1,6 @@
 {
-    "name": "challenge_365d",
-    "short_name": "challenge_365d",
+    "name": "kaizen",
+    "short_name": "kaizen",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

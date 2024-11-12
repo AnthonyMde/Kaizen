@@ -1,4 +1,4 @@
-import 'package:challenge_365d/domain/models/challenger_card.dart';
+import 'package:kaizen/domain/models/challenger.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'home_screen_state.freezed.dart';

@@ -1,4 +1,4 @@
-# challenge_365d
+# kaizen
 
 A new Flutter project.
 

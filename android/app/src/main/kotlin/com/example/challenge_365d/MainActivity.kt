@@ -1,4 +1,4 @@
-package com.example.challenge_365d
+package com.towny.kaizen
 
 import io.flutter.embedding.android.FlutterActivity
 
