@@ -16,6 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$Challenger {
+  int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   List<Challenge> get challenges => throw _privateConstructorUsedError;
   int get failures => throw _privateConstructorUsedError;
@@ -33,7 +34,7 @@ abstract class $ChallengerCopyWith<$Res> {
           Challenger value, $Res Function(Challenger) then) =
       _$ChallengerCopyWithImpl<$Res, Challenger>;
   @useResult
-  $Res call({String name, List<Challenge> challenges, int failures});
+  $Res call({int id, String name, List<Challenge> challenges, int failures});
 }
 
 /// @nodoc
@@ -51,11 +52,16 @@ class _$ChallengerCopyWithImpl<$Res, $Val extends Challenger>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? name = null,
     Object? challenges = null,
     Object? failures = null,
   }) {
     return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -80,7 +86,7 @@ abstract class _$$ChallengerImplCopyWith<$Res>
       __$$ChallengerImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, List<Challenge> challenges, int failures});
+  $Res call({int id, String name, List<Challenge> challenges, int failures});
 }
 
 /// @nodoc
@@ -96,11 +102,16 @@ class __$$ChallengerImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? name = null,
     Object? challenges = null,
     Object? failures = null,
   }) {
     return _then(_$ChallengerImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -121,11 +132,14 @@ class __$$ChallengerImplCopyWithImpl<$Res>
 
 class _$ChallengerImpl implements _Challenger {
   const _$ChallengerImpl(
-      {required this.name,
+      {required this.id,
+      required this.name,
       required final List<Challenge> challenges,
       required this.failures})
       : _challenges = challenges;
 
+  @override
+  final int id;
   @override
   final String name;
   final List<Challenge> _challenges;
@@ -141,7 +155,7 @@ class _$ChallengerImpl implements _Challenger {
 
   @override
   String toString() {
-    return 'Challenger(name: $name, challenges: $challenges, failures: $failures)';
+    return 'Challenger(id: $id, name: $name, challenges: $challenges, failures: $failures)';
   }
 
   @override
@@ -149,6 +163,7 @@ class _$ChallengerImpl implements _Challenger {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ChallengerImpl &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             const DeepCollectionEquality()
                 .equals(other._challenges, _challenges) &&
@@ -157,7 +172,7 @@ class _$ChallengerImpl implements _Challenger {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, name,
+  int get hashCode => Object.hash(runtimeType, id, name,
       const DeepCollectionEquality().hash(_challenges), failures);
 
   /// Create a copy of Challenger
@@ -171,10 +186,13 @@ class _$ChallengerImpl implements _Challenger {
 
 abstract class _Challenger implements Challenger {
   const factory _Challenger(
-      {required final String name,
+      {required final int id,
+      required final String name,
       required final List<Challenge> challenges,
       required final int failures}) = _$ChallengerImpl;
 
+  @override
+  int get id;
   @override
   String get name;
   @override

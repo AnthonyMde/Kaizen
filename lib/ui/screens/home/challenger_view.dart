@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 
 class ChallengerView extends StatelessWidget {
   final Challenger challenger;
+  final void Function(String) onToggleChallenge;
 
-  const ChallengerView({super.key, required this.challenger});
+  const ChallengerView(
+      {super.key, required this.challenger, required this.onToggleChallenge});
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +40,9 @@ class ChallengerView extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: challenger.challenges.map((challenge) {
                 return ChallengeView(
-                    name: challenge.name, completed: challenge.completed);
+                    name: challenge.name,
+                    completed: challenge.completed,
+                    onToggle: onToggleChallenge);
               }).toList(),
             ),
           ),
