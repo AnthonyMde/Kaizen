@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "700522802809",
+    "project_id": "challenge-eabe9",
+    "storage_bucket": "challenge-eabe9.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:700522802809:android:c72a657afde9d94215aea8",
+        "android_client_info": {
+          "package_name": "com.towny.kaizen"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB1E8HH4JLgdWesIv80jH7zkSqJSkR61Gs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
