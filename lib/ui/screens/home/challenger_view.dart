@@ -36,14 +36,16 @@ class ChallengerView extends StatelessWidget {
         Expanded(
           child: Padding(
             padding: const EdgeInsets.all(8),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: challenger.challenges.map((challenge) {
+            child: ListView.separated(
+              shrinkWrap: true,
+              separatorBuilder: (context, index) => const SizedBox(height: 8),
+              itemCount: challenger.challenges.length,
+              itemBuilder: (context, index) {
                 return ChallengeView(
-                    name: challenge.name,
-                    completed: challenge.completed,
+                    name: challenger.challenges[index].name,
+                    completed: challenger.challenges[index].completed,
                     onToggle: onToggleChallenge);
-              }).toList(),
+              },
             ),
           ),
         )
