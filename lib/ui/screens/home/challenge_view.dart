@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:kaizen/domain/models/challenger.dart';
 
 class ChallengeView extends StatelessWidget {
-  final String name;
-  final bool completed;
-  final void Function(String) onToggle;
+  final Challenge challenge;
+  final void Function(Challenge) onToggle;
 
   const ChallengeView(
       {super.key,
-      required this.name,
-      required this.completed,
+      required this.challenge,
       required this.onToggle});
 
   @override
@@ -16,14 +15,14 @@ class ChallengeView extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
-          color: completed ? Colors.lightGreen : Colors.deepOrangeAccent,
+          color: challenge.completed ? Colors.lightGreen : Colors.deepOrangeAccent,
           borderRadius: BorderRadius.circular(8.0)),
       child: Row(
         children: [
           Checkbox(
-            value: completed,
+            value: challenge.completed,
             onChanged: (checked) {
-              onToggle(name);
+              onToggle(challenge);
             },
             activeColor: Colors.white,
             checkColor: Colors.green,
@@ -31,7 +30,7 @@ class ChallengeView extends StatelessWidget {
           const SizedBox(width: 8),
           Expanded(
             child: Text(
-              name,
+              challenge.name,
               style: const TextStyle(
                 fontSize: 18,
                 color: Colors.white,

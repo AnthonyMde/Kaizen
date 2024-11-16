@@ -1,4 +1,4 @@
-import 'package:kaizen/domain/date_service.dart';
+import 'package:kaizen/domain/services/date_service.dart';
 
 class DateServiceImpl implements DateService {
   @override

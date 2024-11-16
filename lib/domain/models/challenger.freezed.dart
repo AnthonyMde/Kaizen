@@ -14,12 +14,19 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
+Challenger _$ChallengerFromJson(Map<String, dynamic> json) {
+  return _Challenger.fromJson(json);
+}
+
 /// @nodoc
 mixin _$Challenger {
-  int get id => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   List<Challenge> get challenges => throw _privateConstructorUsedError;
   int get failures => throw _privateConstructorUsedError;
+
+  /// Serializes this Challenger to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
   /// Create a copy of Challenger
   /// with the given fields replaced by the non-null parameter values.
@@ -34,7 +41,7 @@ abstract class $ChallengerCopyWith<$Res> {
           Challenger value, $Res Function(Challenger) then) =
       _$ChallengerCopyWithImpl<$Res, Challenger>;
   @useResult
-  $Res call({int id, String name, List<Challenge> challenges, int failures});
+  $Res call({String id, String name, List<Challenge> challenges, int failures});
 }
 
 /// @nodoc
@@ -61,7 +68,7 @@ class _$ChallengerCopyWithImpl<$Res, $Val extends Challenger>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -86,7 +93,7 @@ abstract class _$$ChallengerImplCopyWith<$Res>
       __$$ChallengerImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String name, List<Challenge> challenges, int failures});
+  $Res call({String id, String name, List<Challenge> challenges, int failures});
 }
 
 /// @nodoc
@@ -111,7 +118,7 @@ class __$$ChallengerImplCopyWithImpl<$Res>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -129,7 +136,7 @@ class __$$ChallengerImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$ChallengerImpl implements _Challenger {
   const _$ChallengerImpl(
       {required this.id,
@@ -138,8 +145,11 @@ class _$ChallengerImpl implements _Challenger {
       required this.failures})
       : _challenges = challenges;
 
+  factory _$ChallengerImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ChallengerImplFromJson(json);
+
   @override
-  final int id;
+  final String id;
   @override
   final String name;
   final List<Challenge> _challenges;
@@ -171,6 +181,7 @@ class _$ChallengerImpl implements _Challenger {
                 other.failures == failures));
   }
 
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, name,
       const DeepCollectionEquality().hash(_challenges), failures);
@@ -182,17 +193,27 @@ class _$ChallengerImpl implements _Challenger {
   @pragma('vm:prefer-inline')
   _$$ChallengerImplCopyWith<_$ChallengerImpl> get copyWith =>
       __$$ChallengerImplCopyWithImpl<_$ChallengerImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ChallengerImplToJson(
+      this,
+    );
+  }
 }
 
 abstract class _Challenger implements Challenger {
   const factory _Challenger(
-      {required final int id,
+      {required final String id,
       required final String name,
       required final List<Challenge> challenges,
       required final int failures}) = _$ChallengerImpl;
 
+  factory _Challenger.fromJson(Map<String, dynamic> json) =
+      _$ChallengerImpl.fromJson;
+
   @override
-  int get id;
+  String get id;
   @override
   String get name;
   @override
@@ -208,10 +229,18 @@ abstract class _Challenger implements Challenger {
       throw _privateConstructorUsedError;
 }
 
+Challenge _$ChallengeFromJson(Map<String, dynamic> json) {
+  return _Challenge.fromJson(json);
+}
+
 /// @nodoc
 mixin _$Challenge {
+  String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   bool get completed => throw _privateConstructorUsedError;
+
+  /// Serializes this Challenge to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
   /// Create a copy of Challenge
   /// with the given fields replaced by the non-null parameter values.
@@ -225,7 +254,7 @@ abstract class $ChallengeCopyWith<$Res> {
   factory $ChallengeCopyWith(Challenge value, $Res Function(Challenge) then) =
       _$ChallengeCopyWithImpl<$Res, Challenge>;
   @useResult
-  $Res call({String name, bool completed});
+  $Res call({String id, String name, bool completed});
 }
 
 /// @nodoc
@@ -243,10 +272,15 @@ class _$ChallengeCopyWithImpl<$Res, $Val extends Challenge>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? name = null,
     Object? completed = null,
   }) {
     return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -267,7 +301,7 @@ abstract class _$$ChallengeImplCopyWith<$Res>
       __$$ChallengeImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, bool completed});
+  $Res call({String id, String name, bool completed});
 }
 
 /// @nodoc
@@ -283,10 +317,15 @@ class __$$ChallengeImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? name = null,
     Object? completed = null,
   }) {
     return _then(_$ChallengeImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -300,10 +339,16 @@ class __$$ChallengeImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$ChallengeImpl implements _Challenge {
-  const _$ChallengeImpl({required this.name, required this.completed});
+  const _$ChallengeImpl(
+      {required this.id, required this.name, required this.completed});
 
+  factory _$ChallengeImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ChallengeImplFromJson(json);
+
+  @override
+  final String id;
   @override
   final String name;
   @override
@@ -311,7 +356,7 @@ class _$ChallengeImpl implements _Challenge {
 
   @override
   String toString() {
-    return 'Challenge(name: $name, completed: $completed)';
+    return 'Challenge(id: $id, name: $name, completed: $completed)';
   }
 
   @override
@@ -319,13 +364,15 @@ class _$ChallengeImpl implements _Challenge {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ChallengeImpl &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.completed, completed) ||
                 other.completed == completed));
   }
 
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, name, completed);
+  int get hashCode => Object.hash(runtimeType, id, name, completed);
 
   /// Create a copy of Challenge
   /// with the given fields replaced by the non-null parameter values.
@@ -334,13 +381,26 @@ class _$ChallengeImpl implements _Challenge {
   @pragma('vm:prefer-inline')
   _$$ChallengeImplCopyWith<_$ChallengeImpl> get copyWith =>
       __$$ChallengeImplCopyWithImpl<_$ChallengeImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ChallengeImplToJson(
+      this,
+    );
+  }
 }
 
 abstract class _Challenge implements Challenge {
   const factory _Challenge(
-      {required final String name,
+      {required final String id,
+      required final String name,
       required final bool completed}) = _$ChallengeImpl;
 
+  factory _Challenge.fromJson(Map<String, dynamic> json) =
+      _$ChallengeImpl.fromJson;
+
+  @override
+  String get id;
   @override
   String get name;
   @override

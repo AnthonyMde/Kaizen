@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 class ChallengerView extends StatelessWidget {
   final Challenger challenger;
-  final void Function(String) onToggleChallenge;
+  final void Function(Challenge) onToggleChallenge;
 
   const ChallengerView(
       {super.key, required this.challenger, required this.onToggleChallenge});
@@ -42,8 +42,7 @@ class ChallengerView extends StatelessWidget {
               itemCount: challenger.challenges.length,
               itemBuilder: (context, index) {
                 return ChallengeView(
-                    name: challenger.challenges[index].name,
-                    completed: challenger.challenges[index].completed,
+                    challenge: challenger.challenges[index],
                     onToggle: onToggleChallenge);
               },
             ),
