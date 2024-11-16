@@ -36,7 +36,7 @@ class HomeScreen extends ConsumerWidget {
                     challengers: value,
                     onToggleChallenge: (challengerId, challenge) {
                       ref
-                          .read(challengerRepositoryProvider)
+                          .read(challengersProvider.notifier)
                           .toggleChallengeState(challengerId, challenge);
                     }),
                 AsyncError(:final error) => Text(
