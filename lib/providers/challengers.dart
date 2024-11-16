@@ -15,8 +15,10 @@ class Challengers extends _$Challengers {
 
   Future<void> toggleChallengeState(
       String challengerId, Challenge challenge) async {
-    return ref
+    await ref
         .read(challengerRepositoryProvider)
         .toggleChallengeState(challengerId, challenge);
+
+    ref.invalidateSelf();
   }
 }
