@@ -10,29 +10,40 @@ class ChallengerRepositoryImpl implements ChallengerRepository {
   final FirebaseFirestore firestoreInstance = FirebaseFirestore.instance;
 
   @override
-  Future<List<Challenger>> getAllChallengers() async {
-    final collection =
-        await firestoreInstance.collection(challengersCollectionKey).get();
+  Future<void> toggleChallengeState(
+      String challengerId, Challenge challenge) async {
+    final newStatus = !challenge.completed;
 
-    final challengers =
-        collection.docs.map((doc) => toChallenger(doc)).toList();
-
-    final challengersWithChallenges =
-        await Future.wait(challengers.map((challenger) async {
-      final challengeSnapshots = await firestoreInstance
-          .collection(challengersCollectionKey)
-          .doc(challenger.id.toString())
-          .collection(challengesCollectionKey)
-          .get();
-      final challenges =
-          challengeSnapshots.docs.map((doc) => toChallenge(doc)).toList();
-      return challenger.copyWith(challenges: challenges);
-    }).toList());
-
-    return challengersWithChallenges;
+    await firestoreInstance
+        .collection(challengersCollectionKey)
+        .doc(challengerId)
+        .collection(challengesCollectionKey)
+        .doc(challenge.id)
+        .update({"completed": newStatus}).catchError((error) => debugPrint(
+            "Failed to update challenge ${challenge.name} $error"));
   }
 
-  Challenger toChallenger(QueryDocumentSnapshot doc) {
+  @override
+  Stream<List<Challenger>> watchChallengers() {
+    return firestoreInstance
+        .collection(challengersCollectionKey)
+        .snapshots()
+        .map((snapshot) =>
+            snapshot.docs.map((doc) => _toChallenger(doc)).toList());
+  }
+
+  @override
+  Stream<List<Challenge>> watchChallenges(String challengerId) {
+    return firestoreInstance
+        .collection(challengersCollectionKey)
+        .doc(challengerId)
+        .collection(challengesCollectionKey)
+        .snapshots()
+        .map((snapshot) =>
+            snapshot.docs.map((doc) => _toChallenge(doc)).toList());
+  }
+
+  Challenger _toChallenger(QueryDocumentSnapshot doc) {
     return Challenger(
         id: doc['id'] as String,
         name: doc['name'] as String,
@@ -40,29 +51,10 @@ class ChallengerRepositoryImpl implements ChallengerRepository {
         challenges: []);
   }
 
-  Challenge toChallenge(QueryDocumentSnapshot doc) {
+  Challenge _toChallenge(QueryDocumentSnapshot doc) {
     return Challenge(
         id: doc['id'] as String,
         name: doc['name'] as String,
         completed: doc['completed'] as bool);
-  }
-
-  @override
-  Future<void> toggleChallengeState(
-      String challengerId, Challenge challenge) async {
-    final newStatus = !challenge.completed;
-
-    try {
-      await firestoreInstance
-          .collection(challengersCollectionKey)
-          .doc(challengerId)
-          .collection(challengesCollectionKey)
-          .doc(challenge.id)
-          .update({"completed": newStatus});
-
-      debugPrint("Challenge has been updated to $newStatus");
-    } catch (e) {
-      debugPrint("Failed to update challenge ${challenge.name} $e");
-    }
   }
 }

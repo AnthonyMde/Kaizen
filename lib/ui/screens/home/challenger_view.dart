@@ -1,8 +1,10 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kaizen/domain/models/challenger.dart';
+import 'package:kaizen/providers/challenges_stream.dart';
 import 'package:kaizen/ui/screens/home/challenge_view.dart';
 import 'package:flutter/material.dart';
 
-class ChallengerView extends StatelessWidget {
+class ChallengerView extends ConsumerWidget {
   final Challenger challenger;
   final void Function(Challenge) onToggleChallenge;
 
@@ -10,7 +12,20 @@ class ChallengerView extends StatelessWidget {
       {super.key, required this.challenger, required this.onToggleChallenge});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final challenges = ref.watch(challengesStreamProvider(challenger.id));
+
+    return challenges.when(
+        data: (challenges) => content(challenges),
+        error: (error, stacktrace) {
+          return Text("Oops, cannot load challenges for ${challenger.name}");
+        },
+        loading: () {
+          return const CircularProgressIndicator();
+        });
+  }
+
+  Row content(List<Challenge> challenges) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
@@ -29,7 +44,7 @@ class ChallengerView extends StatelessWidget {
 
         // Vertical divider
         SizedBox(
-            height: 40.0 * challenger.challenges.length.toDouble(),
+            height: 40.0 * challenges.length.toDouble(),
             child: const VerticalDivider(thickness: 1, color: Colors.grey)),
 
         // List of challenges
@@ -39,10 +54,10 @@ class ChallengerView extends StatelessWidget {
             child: ListView.separated(
               shrinkWrap: true,
               separatorBuilder: (context, index) => const SizedBox(height: 8),
-              itemCount: challenger.challenges.length,
+              itemCount: challenges.length,
               itemBuilder: (context, index) {
                 return ChallengeView(
-                    challenge: challenger.challenges[index],
+                    challenge: challenges[index],
                     onToggle: onToggleChallenge);
               },
             ),

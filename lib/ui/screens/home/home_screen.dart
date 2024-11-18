@@ -1,9 +1,8 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:kaizen/domain/models/challenger.dart';
-import 'package:kaizen/providers/challenger_repository_provider.dart';
-import 'package:kaizen/providers/challengers.dart';
+import 'package:kaizen/providers/challenger_actions.dart';
+import 'package:kaizen/providers/challengers_stream.dart';
 import 'package:kaizen/providers/date_provider.dart';
 import 'package:kaizen/ui/screens/home/challenger_list_view.dart';
 import 'package:kaizen/ui/screens/home/header.dart';
@@ -13,9 +12,8 @@ class HomeScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final dateService = ref.watch(dateServiceProvider);
-    final AsyncValue<List<Challenger>> challengers =
-        ref.watch(challengersProvider);
+    final dateService = ref.read(dateServiceProvider);
+    final challengersStream = ref.watch(challengersStreamProvider);
 
     final now = dateService.getCurrentUTCDate();
     final formattedDate = DateFormat("EEE, dd MMMM yyyy", "en_US").format(now);
@@ -31,18 +29,17 @@ class HomeScreen extends ConsumerWidget {
               Header(
                   formattedDate: formattedDate, pastDays: pastDays.toString()),
               const SizedBox(height: 16.0),
-              switch (challengers) {
-                AsyncData(:final value) => ChallengerListView(
-                    challengers: value,
-                    onToggleChallenge: (challengerId, challenge) {
-                      ref
-                          .read(challengersProvider.notifier)
-                          .toggleChallengeState(challengerId, challenge);
-                    }),
-                AsyncError(:final error) => Text(
-                    'Oops, something unexpected happened ${error.toString()}'),
-                _ => const CircularProgressIndicator(),
-              }
+              challengersStream.when(
+                  data: (challengers) => ChallengerListView(
+                      challengers: challengers,
+                      onToggleChallenge: (challengerId, challenge) {
+                        ref
+                            .read(challengerActionsProvider)
+                            .toggleChallengeState(challengerId, challenge);
+                      }),
+                  error: (e, stack) => Text(
+                      'Oops, something unexpected happened ${e.toString()}'),
+                  loading: () => const CircularProgressIndicator())
             ],
           ),
         ),
