@@ -1,8 +1,8 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kaizen/domain/models/challenger.dart';
 import 'package:kaizen/providers/challenges_stream.dart';
 import 'package:kaizen/ui/screens/home/challenge_view.dart';
-import 'package:flutter/material.dart';
 
 class ChallengerView extends ConsumerWidget {
   final Challenger challenger;
@@ -21,7 +21,7 @@ class ChallengerView extends ConsumerWidget {
           return Text("Oops, cannot load challenges for ${challenger.name}");
         },
         loading: () {
-          return const CircularProgressIndicator();
+          return content([]);
         });
   }
 
@@ -57,8 +57,7 @@ class ChallengerView extends ConsumerWidget {
               itemCount: challenges.length,
               itemBuilder: (context, index) {
                 return ChallengeView(
-                    challenge: challenges[index],
-                    onToggle: onToggleChallenge);
+                    challenge: challenges[index], onToggle: onToggleChallenge);
               },
             ),
           ),

@@ -5,6 +5,7 @@ import 'package:kaizen/providers/challenger_actions.dart';
 import 'package:kaizen/providers/challengers_stream.dart';
 import 'package:kaizen/providers/date_provider.dart';
 import 'package:kaizen/ui/screens/home/challenger_list_view.dart';
+import 'package:kaizen/ui/screens/home/challengers_skeleton.dart';
 import 'package:kaizen/ui/screens/home/header.dart';
 
 class HomeScreen extends ConsumerWidget {
@@ -37,9 +38,11 @@ class HomeScreen extends ConsumerWidget {
                             .read(challengerActionsProvider)
                             .toggleChallengeState(challengerId, challenge);
                       }),
-                  error: (e, stack) => Text(
-                      'Oops, something unexpected happened ${e.toString()}'),
-                  loading: () => const CircularProgressIndicator())
+                  error: (e, stack) => Expanded(
+                    child: Text(
+                        'Oops, something unexpected happened ${e.toString()}'),
+                  ),
+                  loading: () => const ChallengersSkeleton())
             ],
           ),
         ),
