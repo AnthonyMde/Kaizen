@@ -18,12 +18,19 @@ Stream<List<Challenger>> challengersStream(Ref ref) {
     if (account == null) {
       return challengers;
     } else {
-      return challengers
+      final sortedChallengers = challengers
         ..sort((a, b) {
           if (a.id == account.id) return -1;
           if (b.id == account.id) return 1;
           return a.id.compareTo(b.id);
         });
+      return sortedChallengers.map((challenger) {
+        if (challenger.id == account.id) {
+          return challenger.copyWith(name: "Me");
+        } else {
+          return challenger;
+        }
+      }).toList();
     }
   });
 }
