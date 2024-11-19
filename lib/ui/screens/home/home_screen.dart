@@ -31,19 +31,20 @@ class HomeScreen extends ConsumerWidget {
               Header(
                   formattedDate: formattedDate, pastDays: pastDays.toString()),
               const SizedBox(height: 32.0),
-              challengersStream.when(
-                  data: (challengers) => ChallengerListView(
-                      challengers: challengers,
-                      onToggleChallenge: (challengerId, challenge) {
-                        ref
-                            .read(challengerActionsProvider)
-                            .toggleChallengeState(challengerId, challenge);
-                      }),
-                  error: (e, stack) => Expanded(
-                    child: Text(
-                        'Oops, something unexpected happened ${e.toString()}'),
-                  ),
-                  loading: () => const ChallengersSkeleton())
+              Expanded(
+                  child: challengersStream.when(
+                      data: (challengers) => ChallengerListView(
+                          challengers: challengers,
+                          onToggleChallenge: (challengerId, challenge) {
+                            ref
+                                .read(challengerActionsProvider)
+                                .toggleChallengeState(challengerId, challenge);
+                          }),
+                      error: (e, stack) => Expanded(
+                            child: Text(
+                                'Oops, something unexpected happened ${e.toString()}'),
+                          ),
+                      loading: () => const ChallengersSkeleton()))
             ],
           ),
         ),
