@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -27,10 +29,10 @@ class HomeScreen extends ConsumerWidget {
           padding: const EdgeInsets.all(16),
           child: Column(
             children: <Widget>[
-              const SizedBox(height: 32.0),
+              SizedBox(height: Platform.isIOS ? 0 : 32),
               Header(
                   formattedDate: formattedDate, pastDays: pastDays.toString()),
-              const SizedBox(height: 32.0),
+              const SizedBox(height: 32),
               Expanded(
                   child: challengersStream.when(
                       data: (challengers) => ChallengerListView(

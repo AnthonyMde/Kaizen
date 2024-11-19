@@ -26,9 +26,9 @@ class ChallengerView extends ConsumerWidget {
         });
   }
 
-  Row content(List<Challenge> challenges, BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
+  Column content(List<Challenge> challenges, BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         // Challenger name
         SizedBox(
@@ -44,23 +44,26 @@ class ChallengerView extends ConsumerWidget {
         ),
 
         // Vertical divider
+        // SizedBox(
+        //     height: 40.0 * challenges.length.toDouble(),
+        //     child: const VerticalDivider(thickness: 1, color: Colors.grey)),
         SizedBox(
-            height: 40.0 * challenges.length.toDouble(),
-            child: const VerticalDivider(thickness: 1, color: Colors.grey)),
+          width: MediaQuery.of(context).size.width / 3,
+          child: Divider(
+              thickness: 1, color: Theme.of(context).colorScheme.outline),
+        ),
 
         // List of challenges
-        Expanded(
-          child: Padding(
-            padding: const EdgeInsets.all(8),
-            child: ListView.separated(
-              shrinkWrap: true,
-              separatorBuilder: (context, index) => const SizedBox(height: 8),
-              itemCount: challenges.length,
-              itemBuilder: (context, index) {
-                return ChallengeView(
-                    challenge: challenges[index], onToggle: onToggleChallenge);
-              },
-            ),
+        Padding(
+          padding: const EdgeInsets.all(8),
+          child: ListView.separated(
+            shrinkWrap: true,
+            separatorBuilder: (context, index) => const SizedBox(height: 8),
+            itemCount: challenges.length,
+            itemBuilder: (context, index) {
+              return ChallengeView(
+                  challenge: challenges[index], onToggle: onToggleChallenge);
+            },
           ),
         )
       ],
