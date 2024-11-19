@@ -1,7 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kaizen/domain/errors/login_errors.dart';
-import 'package:kaizen/domain/providers/login_use_case_provider.dart';
-import 'package:kaizen/providers/login/login_screen_state.dart';
+import 'package:kaizen/domain/usecases/providers/login_use_case_provider.dart';
+
+import 'login_screen_state.dart';
 
 class LoginStateNotifier extends StateNotifier<LoginScreenState> {
   final Ref ref;

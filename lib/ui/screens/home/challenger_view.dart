@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kaizen/domain/models/challenger.dart';
-import 'package:kaizen/providers/challenges_stream.dart';
 import 'package:kaizen/ui/screens/home/challenge_view.dart';
+
+import '../../providers/challengers/challenges_stream.dart';
 
 class ChallengerView extends ConsumerWidget {
   final Challenger challenger;

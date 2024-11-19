@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kaizen/domain/errors/login_errors.dart';
-import 'package:kaizen/providers/repositories/login_repository_provider.dart';
+
+import '../../data/repositories/providers/login_repository_provider.dart';
 
 class LoginUseCase {
   final authorizedUsers = ['Towny', 'Jack', 'Clowy'];

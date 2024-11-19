@@ -1,7 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:kaizen/domain/providers/check_users_logged_in_use_case_provider.dart';
+import 'package:kaizen/domain/usecases/providers/check_users_logged_in_use_case_provider.dart';
 import 'package:kaizen/firebase_options.dart';
 
 import 'app/my_app.dart';

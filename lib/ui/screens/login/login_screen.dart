@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:kaizen/providers/login/login_state_notifier.dart';
+import 'package:kaizen/ui/providers/login/login_state_notifier.dart';
 import 'package:kaizen/ui/screens/home/home_screen.dart';
 
 class LoginScreen extends ConsumerWidget {
