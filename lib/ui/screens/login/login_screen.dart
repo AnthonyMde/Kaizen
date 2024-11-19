@@ -11,39 +11,41 @@ class LoginScreen extends ConsumerWidget {
     final loginState = ref.watch(loginStateProvider);
     final loginStateNotifier = ref.read(loginStateProvider.notifier);
 
-    return Material(
-      child: Padding(
-        padding: const EdgeInsets.all(24.0),
-        child: (Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-                style: Theme.of(context).textTheme.headlineMedium,
-                "Who are you?"),
-            const SizedBox(height: 16),
-            TextField(
-              onChanged: (name) => loginStateNotifier.updateName(name),
-              enabled: loginState.isLoginNameEnabled,
-              decoration: const InputDecoration(
-                  border: OutlineInputBorder(), labelText: "Enter your name"),
-            ),
-            const SizedBox(height: 8),
-            Text(
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyLarge
-                    ?.copyWith(color: Colors.red),
-                loginState.errorText ?? ""),
-            const SizedBox(height: 16),
-            ElevatedButton(
-              onPressed: loginState.isButtonLoading
-                  ? null
-                  : () =>
-                      loginStateNotifier.login(() => {_onComplete(context)}),
-              child: const Text("Access Kaizen"),
-            ),
-          ],
-        )),
+    return Scaffold(
+      body: Material(
+        child: Padding(
+          padding: const EdgeInsets.all(24.0),
+          child: (Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                  style: Theme.of(context).textTheme.headlineMedium,
+                  "Who are you?"),
+              const SizedBox(height: 16),
+              TextField(
+                onChanged: (name) => loginStateNotifier.updateName(name),
+                enabled: loginState.isLoginNameEnabled,
+                decoration: const InputDecoration(
+                    border: OutlineInputBorder(), labelText: "Enter your name"),
+              ),
+              const SizedBox(height: 8),
+              Text(
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyLarge
+                      ?.copyWith(color: Colors.red),
+                  loginState.errorText ?? ""),
+              const SizedBox(height: 16),
+              ElevatedButton(
+                onPressed: loginState.isButtonLoading
+                    ? null
+                    : () =>
+                        loginStateNotifier.login(() => {_onComplete(context)}),
+                child: const Text("Access Kaizen"),
+              ),
+            ],
+          )),
+        ),
       ),
     );
   }
