@@ -32,12 +32,15 @@ class ChallengerView extends ConsumerWidget {
         // Challenger name
         SizedBox(
           width: 100,
-          child: Text(
-            challenger.name,
-            textAlign: TextAlign.center,
-            style: const TextStyle(
-              fontSize: 22,
-              fontWeight: FontWeight.bold,
+          child: FittedBox(
+            fit: BoxFit.scaleDown,
+            child: Text(
+              challenger.name,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                fontSize: 28,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
         ),
