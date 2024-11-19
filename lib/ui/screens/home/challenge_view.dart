@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kaizen/domain/models/challenger.dart';
+import 'package:kaizen/theme/colors_extension.dart';
 
 class ChallengeView extends StatelessWidget {
   final Challenge challenge;
@@ -15,7 +16,7 @@ class ChallengeView extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
-          color: challenge.completed ? Colors.lightGreen : Colors.deepOrangeAccent,
+          color: challenge.completed ? Theme.of(context).colorScheme.done : Theme.of(context).colorScheme.todo,
           borderRadius: BorderRadius.circular(8.0)),
       child: Row(
         children: [

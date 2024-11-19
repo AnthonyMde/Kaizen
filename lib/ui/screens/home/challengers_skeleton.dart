@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:kaizen/theme/colors_extension.dart';
 import 'package:shimmer/shimmer.dart';
-
-import '../../../theme/theme_extension.dart';
 
 class ChallengersSkeleton extends StatelessWidget {
   const ChallengersSkeleton({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final colors = Theme.of(context).extension<CustomColors>()!;
+    final shimmerBaseColor = Theme.of(context).colorScheme.shimmerBase;
+    final shimmerHighlightColor = Theme.of(context).colorScheme.shimmerHighlight;
 
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -17,14 +17,14 @@ class ChallengersSkeleton extends StatelessWidget {
         SizedBox(
             width: 100,
             child: Shimmer.fromColors(
-                baseColor: colors.shimmerBase,
-                highlightColor: colors.shimmerHighlight,
+                baseColor: shimmerBaseColor,
+                highlightColor: shimmerHighlightColor,
                 child: Shimmer.fromColors(
-                  baseColor: colors.shimmerBase,
-                  highlightColor: colors.shimmerHighlight,
+                  baseColor: shimmerBaseColor,
+                  highlightColor: shimmerHighlightColor,
                   child: Container(
                     height: 20,
-                    color: colors.shimmerBase,
+                    color: shimmerBaseColor,
                   ),
                 ))),
 
@@ -47,13 +47,13 @@ class ChallengersSkeleton extends StatelessWidget {
                   children: [
                     // Circle for checkbox or icon placeholder
                     Shimmer.fromColors(
-                        baseColor: colors.shimmerBase,
-                        highlightColor: colors.shimmerHighlight,
+                        baseColor: shimmerBaseColor,
+                        highlightColor: shimmerHighlightColor,
                         child: Container(
                           width: 20,
                           height: 20,
                           decoration: BoxDecoration(
-                            color: colors.shimmerBase,
+                            color: shimmerBaseColor,
                             shape: BoxShape.circle,
                           ),
                         )),
@@ -61,11 +61,11 @@ class ChallengersSkeleton extends StatelessWidget {
                     // Placeholder for challenge text
                     Expanded(
                       child: Shimmer.fromColors(
-                        baseColor: colors.shimmerBase,
-                        highlightColor: colors.shimmerHighlight,
+                        baseColor: shimmerBaseColor,
+                        highlightColor: shimmerHighlightColor,
                         child: Container(
                           height: 20,
-                          color: colors.shimmerBase,
+                          color: shimmerBaseColor,
                         ),
                       ),
                     )
