@@ -2,7 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:kaizen/ui/providers/challengers/challenger_actions.dart';
-import 'package:kaizen/providers/date_provider.dart';
+import 'package:kaizen/data/repositories/providers/date_repository_provider.dart';
 import 'package:kaizen/ui/screens/home/challenger_list_view.dart';
 import 'package:kaizen/ui/screens/home/challengers_skeleton.dart';
 import 'package:kaizen/ui/screens/home/header.dart';
@@ -14,7 +14,7 @@ class HomeScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final dateService = ref.read(dateServiceProvider);
+    final dateService = ref.read(dateRepositoryProvider);
     final challengersStream = ref.watch(challengersStreamProvider);
 
     final now = dateService.getCurrentUTCDate();

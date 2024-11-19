@@ -1,6 +1,6 @@
-import 'package:kaizen/domain/services/date_service.dart';
+import 'package:kaizen/domain/repositories/date_repository.dart';
 
-class DateServiceImpl implements DateService {
+class DateRepositoryImpl implements DateRepository {
   @override
   DateTime getCurrentUTCDate() => DateTime.now();
 
