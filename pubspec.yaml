@@ -45,6 +45,8 @@ dependencies:
   cloud_firestore: ^5.4.5
   json_annotation: ^4.9.0
   shimmer: ^3.0.0
+  sembast: ^3.7.5+2
+  path_provider: ^2.1.5
 
 dev_dependencies:
   flutter_test:

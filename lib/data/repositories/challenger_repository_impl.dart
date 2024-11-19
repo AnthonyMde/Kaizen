@@ -19,8 +19,8 @@ class ChallengerRepositoryImpl implements ChallengerRepository {
         .doc(challengerId)
         .collection(challengesCollectionKey)
         .doc(challenge.id)
-        .update({"completed": newStatus}).catchError((error) => debugPrint(
-            "Failed to update challenge ${challenge.name} $error"));
+        .update({"completed": newStatus}).catchError((error) =>
+            debugPrint("Failed to update challenge ${challenge.name} $error"));
   }
 
   @override
