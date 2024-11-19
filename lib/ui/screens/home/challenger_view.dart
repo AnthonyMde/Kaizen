@@ -17,16 +17,16 @@ class ChallengerView extends ConsumerWidget {
     final challenges = ref.watch(challengesStreamProvider(challenger.id));
 
     return challenges.when(
-        data: (challenges) => content(challenges),
+        data: (challenges) => content(challenges, context),
         error: (error, stacktrace) {
           return Text("Oops, cannot load challenges for ${challenger.name}");
         },
         loading: () {
-          return content([]);
+          return content([], context);
         });
   }
 
-  Row content(List<Challenge> challenges) {
+  Row content(List<Challenge> challenges, BuildContext context) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
@@ -38,10 +38,7 @@ class ChallengerView extends ConsumerWidget {
             child: Text(
               challenger.name,
               textAlign: TextAlign.center,
-              style: const TextStyle(
-                fontSize: 28,
-                fontWeight: FontWeight.bold,
-              ),
+              style: Theme.of(context).textTheme.titleMedium,
             ),
           ),
         ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kaizen/theme/colors_extension.dart';
 
 class Header extends StatelessWidget {
   const Header(
@@ -9,20 +10,19 @@ class Header extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
     return Column(
       children: [
-        Text(
-          formattedDate,
-          style: const TextStyle(
-              fontSize: 20, fontStyle: FontStyle.italic, color: Colors.black87),
-        ),
-        Text(
-          "Day ${pastDays.toString()}",
-          style: const TextStyle(
-              fontSize: 28,
-              fontWeight: FontWeight.bold,
-              color: Colors.deepOrangeAccent),
-        ),
+        Text(formattedDate,
+            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                fontWeight: FontWeight.w500,
+                color: colorScheme.onPrimaryContainer)),
+        const SizedBox(height: 2),
+        Text("Day ${pastDays.toString()}",
+            style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+                fontWeight: FontWeight.bold,
+                color: colorScheme.primaryHighlight)),
       ],
     );
   }

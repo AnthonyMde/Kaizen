@@ -35,7 +35,7 @@ class LoginScreen extends ConsumerWidget {
                     ?.copyWith(color: Colors.red),
                 loginState.errorText ?? ""),
             const SizedBox(height: 16),
-            FilledButton(
+            ElevatedButton(
               onPressed: loginState.isButtonLoading
                   ? null
                   : () =>

@@ -27,10 +27,10 @@ class HomeScreen extends ConsumerWidget {
           padding: const EdgeInsets.all(16),
           child: Column(
             children: <Widget>[
-              const SizedBox(height: 16.0),
+              const SizedBox(height: 32.0),
               Header(
                   formattedDate: formattedDate, pastDays: pastDays.toString()),
-              const SizedBox(height: 16.0),
+              const SizedBox(height: 32.0),
               challengersStream.when(
                   data: (challengers) => ChallengerListView(
                       challengers: challengers,

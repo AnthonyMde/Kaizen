@@ -13,10 +13,12 @@ class ChallengeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
     return Container(
-      padding: const EdgeInsets.all(8),
+      padding: const EdgeInsets.all(4),
       decoration: BoxDecoration(
-          color: challenge.completed ? Theme.of(context).colorScheme.done : Theme.of(context).colorScheme.todo,
+          color: challenge.completed ? colorScheme.done : colorScheme.todo,
           borderRadius: BorderRadius.circular(8.0)),
       child: Row(
         children: [
@@ -26,15 +28,14 @@ class ChallengeView extends StatelessWidget {
               onToggle(challenge);
             },
             activeColor: Colors.white,
-            checkColor: Colors.green,
+            checkColor: colorScheme.done,
           ),
           const SizedBox(width: 8),
           Expanded(
             child: Text(
               challenge.name,
-              style: const TextStyle(
-                fontSize: 18,
-                color: Colors.white,
+              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                color: colorScheme.onChallengeCard
               ),
             ),
           )
