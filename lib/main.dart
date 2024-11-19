@@ -16,7 +16,13 @@ void main() async {
     DeviceOrientation.portraitDown
   ]);
   final container = ProviderContainer();
-  final hasAccount = await container.read(checkUserLoggedInUseCaseProvider).call();
+  bool? hasAccount = false;
+  try {
+    hasAccount = await container.read(checkUserLoggedInUseCaseProvider).call();
+  } catch(e) {
+    debugPrint("DEBUG: Failed to retrieve account with error: $e");
+    hasAccount = false;
+  };
 
   runApp(ProviderScope(child: MyApp(showLogin: !hasAccount)));
 }

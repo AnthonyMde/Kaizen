@@ -1,5 +1,7 @@
-abstract class AccountRepository {
-  Future<void> login(String name);
+import 'package:kaizen/domain/models/challenger.dart';
 
-  Future<String?> getAccount();
+abstract class AccountRepository {
+  Future<void> login(Challenger challenger);
+
+  Future<Challenger?> getAccount();
 }

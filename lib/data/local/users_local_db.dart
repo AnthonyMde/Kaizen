@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:kaizen/data/local/sembast_manager.dart';
+import 'package:kaizen/domain/models/challenger.dart';
 import 'package:sembast/sembast.dart';
 
 class UsersLocalDB {
@@ -8,17 +10,20 @@ class UsersLocalDB {
   late Future<Database> _db;
 
   UsersLocalDB() {
-      _db = SembastManager.instance.openDatabase(_accountFileName);
+    _db = SembastManager.instance.openDatabase(_accountFileName);
   }
 
-  Future<void> saveAccount(String accountName) async {
+  Future<void> saveAccount(Challenger challenger) async {
     final db = await _db;
-    _store.record(_accountKey).put(db, accountName);
+    _store.record(_accountKey).put(db, challenger.toJson());
   }
 
-  Future<String?> getAccount() async {
+  Future<Challenger?> getAccount() async {
     final db = await _db;
-    final account = await _store.record(_accountKey).get(db) as String?;
+    final accountJson =
+        await _store.record(_accountKey).get(db) as Map<String, dynamic>?;
+    final account = accountJson != null ? Challenger.fromJson(accountJson) : null;
+    debugPrint("DEBUG: account is $account");
     return account;
   }
 }
