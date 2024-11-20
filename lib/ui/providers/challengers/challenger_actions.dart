@@ -20,7 +20,7 @@ class ChallengerActions {
   Future<void> toggleChallengeState(
       String challengerId, Challenge challenge) async {
     final account = await ref.read(getAccountUseCaseProvider).call();
-    // TODO show toast
+    // TODO show different UI
     // TODO move to use case?
     if (account == null || account.id != challengerId) {
       return;
