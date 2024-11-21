@@ -18,12 +18,12 @@ class ChallengeView extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(4),
       decoration: BoxDecoration(
-          color: challenge.completed ? colorScheme.done : colorScheme.todo,
+          color: challenge.isCompleted ? colorScheme.done : colorScheme.todo,
           borderRadius: BorderRadius.circular(8.0)),
       child: Row(
         children: [
           Checkbox(
-            value: challenge.completed,
+            value: challenge.isCompleted,
             onChanged: (checked) {
               onToggle(challenge);
             },

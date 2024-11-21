@@ -28,12 +28,12 @@ _$ChallengeImpl _$$ChallengeImplFromJson(Map<String, dynamic> json) =>
     _$ChallengeImpl(
       id: json['id'] as String,
       name: json['name'] as String,
-      completed: json['completed'] as bool,
+      isCompleted: json['isCompleted'] as bool,
     );
 
 Map<String, dynamic> _$$ChallengeImplToJson(_$ChallengeImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
-      'completed': instance.completed,
+      'isCompleted': instance.isCompleted,
     };

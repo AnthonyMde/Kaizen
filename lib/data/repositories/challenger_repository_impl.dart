@@ -12,14 +12,14 @@ class ChallengerRepositoryImpl implements ChallengerRepository {
   @override
   Future<void> toggleChallengeState(
       String challengerId, Challenge challenge) async {
-    final newStatus = !challenge.completed;
+    final newStatus = !challenge.isCompleted;
 
     await firestoreInstance
         .collection(challengersCollectionKey)
         .doc(challengerId)
         .collection(challengesCollectionKey)
         .doc(challenge.id)
-        .update({"completed": newStatus}).catchError((error) =>
+        .update({"isCompleted": newStatus}).catchError((error) =>
             debugPrint("Failed to update challenge ${challenge.name} $error"));
   }
 
@@ -55,6 +55,6 @@ class ChallengerRepositoryImpl implements ChallengerRepository {
     return Challenge(
         id: doc['id'] as String,
         name: doc['name'] as String,
-        completed: doc['completed'] as bool);
+        isCompleted: doc['isCompleted'] as bool);
   }
 }

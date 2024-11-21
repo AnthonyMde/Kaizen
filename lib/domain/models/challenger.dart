@@ -1,7 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'challenger.freezed.dart';
-
 part 'challenger.g.dart';
 
 @freezed
@@ -21,7 +20,7 @@ class Challenge with _$Challenge {
   const factory Challenge(
       {required String id,
       required String name,
-      required bool completed}) = _Challenge;
+      required bool isCompleted}) = _Challenge;
 
   factory Challenge.fromJson(Map<String, dynamic> json) =>
       _$ChallengeFromJson(json);
