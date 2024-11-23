@@ -22,7 +22,7 @@ void main() async {
   } catch(e) {
     debugPrint("DEBUG: Failed to retrieve account with error: $e");
     hasAccount = false;
-  };
+  }
 
   runApp(ProviderScope(child: MyApp(showLogin: !hasAccount)));
 }
