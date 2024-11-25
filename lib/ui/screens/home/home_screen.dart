@@ -36,11 +36,9 @@ class HomeScreen extends ConsumerWidget {
               const SizedBox(height: 32),
               currentChallengersStream.when(
                 data: (challenger) {
-                  print('CHALLENGER: $challenger');
                   if (challenger == null) {
                     return const SizedBox();
                   }
-                  print('CHALLENGER: NOT NULL');
                   return Column(
                     children: [
                       ChallengerView(

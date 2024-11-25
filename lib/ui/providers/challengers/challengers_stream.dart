@@ -28,12 +28,10 @@ Stream<Challenger?> currentChallengerStream(Ref ref) async* {
   final challengers = await ref.watch(challengersStreamProvider.future);
   final account = await ref.watch(accountRepositoryProvider).getAccount();
   if (account != null) {
-    //print(
-    //    "DEBUG : account ID : ${account.id} / first challenger : $challengers");
     final c = challengers
     .firstWhereOrNull((challenger) => challenger.id == account.id);
-    print('DEBUG : current challenger : $c'); 
     yield c;
+    return;
   }
   yield null;
 }
