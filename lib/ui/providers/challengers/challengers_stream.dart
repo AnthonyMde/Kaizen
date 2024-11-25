@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kaizen/data/repositories/providers/login_repository_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -9,28 +10,29 @@ part 'challengers_stream.g.dart';
 
 @riverpod
 Stream<List<Challenger>> challengersStream(Ref ref) {
-  return ref
-      .read(challengerRepositoryProvider)
-      .watchChallengers()
-      .asyncMap((challengers) async {
-    final account = await ref.read(accountRepositoryProvider).getAccount();
-    // TODO move sorting logic to dedicated a use case.
-    if (account == null) {
-      return challengers;
-    } else {
-      final sortedChallengers = challengers
-        ..sort((a, b) {
-          if (a.id == account.id) return -1;
-          if (b.id == account.id) return 1;
-          return a.id.compareTo(b.id);
-        });
-      return sortedChallengers.map((challenger) {
-        if (challenger.id == account.id) {
-          return challenger.copyWith(name: "Me");
-        } else {
-          return challenger;
-        }
-      }).toList();
+  return ref.read(challengerRepositoryProvider).watchChallengers();
+}
+
+@riverpod
+Stream<List<Challenger>> otherChallengersStream(Ref ref) async* {
+  final challengers = await ref.read(challengersStreamProvider.future);
+  final account = await ref.read(accountRepositoryProvider).getAccount();
+  if (account != null) {
+    challengers.removeWhere((challenger) => challenger.id == account.id);
+  }
+  yield challengers;
+}
+
+@riverpod
+Stream<Challenger?> currentChallengerStream(Ref ref) async* {
+  final challengers = await ref.watch(challengersStreamProvider.future);
+  final account = await ref.watch(accountRepositoryProvider).getAccount();
+  if (account != null) {
+    final currentChallenger = challengers
+        .firstWhereOrNull((challenger) => challenger.id == account.id);
+    if (currentChallenger != null) {
+      yield currentChallenger.copyWith(name: "Me");
     }
-  });
+  }
+  yield null;
 }
