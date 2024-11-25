@@ -9,8 +9,14 @@ class ChallengerView extends ConsumerWidget {
   final Challenger challenger;
   final void Function(Challenge) onToggleChallenge;
 
-  const ChallengerView(
-      {super.key, required this.challenger, required this.onToggleChallenge});
+  const ChallengerView({
+    super.key,
+    required this.challenger,
+    required this.onToggleChallenge,
+    this.isCurrentChallenger = false,
+  });
+
+  final bool isCurrentChallenger;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -36,9 +42,13 @@ class ChallengerView extends ConsumerWidget {
           child: FittedBox(
             fit: BoxFit.scaleDown,
             child: Text(
-              challenger.name,
+              isCurrentChallenger ? "Me" : challenger.name,
               textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.titleMedium,
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    fontWeight: isCurrentChallenger
+                        ? FontWeight.bold
+                        : FontWeight.normal,
+                  ),
             ),
           ),
         ),
