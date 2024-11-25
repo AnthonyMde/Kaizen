@@ -37,19 +37,15 @@ class ChallengerView extends ConsumerWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         // Challenger name
-        SizedBox(
-          width: 100,
-          child: FittedBox(
-            fit: BoxFit.scaleDown,
-            child: Text(
-              isCurrentChallenger ? "Me" : challenger.name,
-              textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    fontWeight: isCurrentChallenger
-                        ? FontWeight.bold
-                        : FontWeight.normal,
-                  ),
-            ),
+        Text(
+          isCurrentChallenger ? "My challenges" : challenger.name,
+          maxLines: 2,
+          overflow: TextOverflow.ellipsis,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontSize: isCurrentChallenger ? 22 : 16,
+            fontWeight:
+                isCurrentChallenger ? FontWeight.bold : FontWeight.normal,
           ),
         ),
 

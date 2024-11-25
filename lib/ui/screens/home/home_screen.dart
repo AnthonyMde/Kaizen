@@ -49,7 +49,11 @@ class HomeScreen extends ConsumerWidget {
                                 .read(challengerActionsProvider)
                                 .toggleChallengeState(challenger.id, challenge);
                           }),
-                      const Divider(),
+                      const SizedBox(height: 8),
+                      const Divider(
+                        thickness: 3,
+                      ),
+                      const SizedBox(height: 8),
                     ],
                   );
                 },
