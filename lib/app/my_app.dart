@@ -15,6 +15,7 @@ class MyApp extends StatelessWidget {
       title: 'Kaizen',
       theme: lightTheme,
       darkTheme: darkTheme,
+      debugShowCheckedModeBanner: false,
       themeMode: ThemeMode.system,
       home: showLogin ? const LoginScreen() : const HomeScreen(),
     );

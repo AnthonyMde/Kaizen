@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:kaizen/data/repositories/providers/date_repository_provider.dart';
+import 'package:kaizen/theme/colors_extension.dart';
 import 'package:kaizen/ui/providers/challengers/challenger_actions.dart';
 import 'package:kaizen/ui/screens/home/challenger_view.dart';
 import 'package:kaizen/ui/screens/home/challengers_skeleton.dart';
@@ -50,8 +51,9 @@ class HomeScreen extends ConsumerWidget {
                                 .toggleChallengeState(challenger.id, challenge);
                           }),
                       const SizedBox(height: 8),
-                      const Divider(
-                        thickness: 3,
+                      Divider(
+                        thickness: 1,
+                        color: Theme.of(context).colorScheme.primaryHighlight,
                       ),
                       const SizedBox(height: 8),
                     ],
