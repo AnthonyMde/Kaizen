@@ -29,64 +29,66 @@ class HomeScreen extends ConsumerWidget {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16),
-          child: Column(
-            children: <Widget>[
-              SizedBox(height: Platform.isIOS ? 0 : 32),
-              Header(
-                  formattedDate: formattedDate, pastDays: pastDays.toString()),
-              const SizedBox(height: 32),
-              currentChallengersStream.when(
-                data: (challenger) {
-                  if (challenger == null) {
-                    return const SizedBox();
-                  }
-                  return Column(
-                    children: [
-                      ChallengerView(
-                          isCurrentChallenger: true,
-                          challenger: challenger,
-                          onToggleChallenge: (challenge) {
-                            ref
-                                .read(challengerActionsProvider)
-                                .toggleChallengeState(challenger.id, challenge);
-                          }),
-                      const SizedBox(height: 8),
-                      Divider(
-                        thickness: 1,
-                        color: Theme.of(context).colorScheme.primaryHighlight,
-                      ),
-                      const SizedBox(height: 8),
-                    ],
-                  );
-                },
-                error: (e, stack) => Expanded(
-                  child: Text(
-                      'Oops, something unexpected happened ${e.toString()}'),
+          child: SingleChildScrollView(
+            child: Column(
+              children: <Widget>[
+                SizedBox(height: Platform.isIOS ? 0 : 32),
+                Header(
+                    formattedDate: formattedDate, pastDays: pastDays.toString()),
+                const SizedBox(height: 32),
+                currentChallengersStream.when(
+                  data: (challenger) {
+                    if (challenger == null) {
+                      return const SizedBox();
+                    }
+                    return Column(
+                      children: [
+                        ChallengerView(
+                            isCurrentChallenger: true,
+                            challenger: challenger,
+                            onToggleChallenge: (challenge) {
+                              ref
+                                  .read(challengerActionsProvider)
+                                  .toggleChallengeState(challenger.id, challenge);
+                            }),
+                        const SizedBox(height: 8),
+                        Divider(
+                          thickness: 1,
+                          color: Theme.of(context).colorScheme.primaryHighlight,
+                        ),
+                        const SizedBox(height: 8),
+                      ],
+                    );
+                  },
+                  error: (e, stack) => Expanded(
+                    child: Text(
+                        'Oops, something unexpected happened ${e.toString()}'),
+                  ),
+                  loading: () => const ChallengersSkeleton(),
                 ),
-                loading: () => const ChallengersSkeleton(),
-              ),
-              Expanded(
-                  child: otherChallengersStream.when(
-                      data: (challengers) => ListView.separated(
-                            shrinkWrap: true,
-                            separatorBuilder: (context, index) =>
-                                const SizedBox(height: 8),
-                            itemCount: challengers.length,
-                            itemBuilder: (context, index) => ChallengerView(
-                                challenger: challengers[index],
-                                onToggleChallenge: (challenge) {
-                                  ref
-                                      .read(challengerActionsProvider)
-                                      .toggleChallengeState(
-                                          challengers[index].id, challenge);
-                                }),
-                          ),
-                      error: (e, stack) => Expanded(
-                            child: Text(
-                                'Oops, something unexpected happened ${e.toString()}'),
-                          ),
-                      loading: () => const ChallengersSkeleton()))
-            ],
+                otherChallengersStream.when(
+                    data: (challengers) => ListView.separated(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          separatorBuilder: (context, index) =>
+                              const SizedBox(height: 8),
+                          itemCount: challengers.length,
+                          itemBuilder: (context, index) => ChallengerView(
+                              challenger: challengers[index],
+                              onToggleChallenge: (challenge) {
+                                ref
+                                    .read(challengerActionsProvider)
+                                    .toggleChallengeState(
+                                        challengers[index].id, challenge);
+                              }),
+                        ),
+                    error: (e, stack) => Expanded(
+                          child: Text(
+                              'Oops, something unexpected happened ${e.toString()}'),
+                        ),
+                    loading: () => const ChallengersSkeleton())
+              ],
+            ),
           ),
         ),
       ),

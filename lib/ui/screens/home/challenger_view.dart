@@ -64,6 +64,7 @@ class ChallengerView extends ConsumerWidget {
           padding: const EdgeInsets.all(8),
           child: ListView.separated(
             shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
             separatorBuilder: (context, index) => const SizedBox(height: 8),
             itemCount: challenges.length,
             itemBuilder: (context, index) {
