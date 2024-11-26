@@ -6,9 +6,9 @@ import '../../data/repositories/providers/login_repository_provider.dart';
 
 class LoginUseCase {
   final authorizedUsers = [
-    const Challenger(id: '1', name: 'Towny', challenges: [], failures: 0),
-    const Challenger(id: '2', name: 'Clowy', challenges: [], failures: 0),
-    const Challenger(id: '3', name: 'Jack', challenges: [], failures: 0),
+    const Challenger(id: '1', name: 'Towny', challenges: [], isWasted: false),
+    const Challenger(id: '2', name: 'Clowi', challenges: [], isWasted: false),
+    const Challenger(id: '3', name: 'Jack', challenges: [], isWasted: false),
   ];
   final Ref ref;
 

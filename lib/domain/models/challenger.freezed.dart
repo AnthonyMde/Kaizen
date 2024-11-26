@@ -23,7 +23,7 @@ mixin _$Challenger {
   String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   List<Challenge> get challenges => throw _privateConstructorUsedError;
-  int get failures => throw _privateConstructorUsedError;
+  bool get isWasted => throw _privateConstructorUsedError;
 
   /// Serializes this Challenger to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -41,7 +41,8 @@ abstract class $ChallengerCopyWith<$Res> {
           Challenger value, $Res Function(Challenger) then) =
       _$ChallengerCopyWithImpl<$Res, Challenger>;
   @useResult
-  $Res call({String id, String name, List<Challenge> challenges, int failures});
+  $Res call(
+      {String id, String name, List<Challenge> challenges, bool isWasted});
 }
 
 /// @nodoc
@@ -62,7 +63,7 @@ class _$ChallengerCopyWithImpl<$Res, $Val extends Challenger>
     Object? id = null,
     Object? name = null,
     Object? challenges = null,
-    Object? failures = null,
+    Object? isWasted = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -77,10 +78,10 @@ class _$ChallengerCopyWithImpl<$Res, $Val extends Challenger>
           ? _value.challenges
           : challenges // ignore: cast_nullable_to_non_nullable
               as List<Challenge>,
-      failures: null == failures
-          ? _value.failures
-          : failures // ignore: cast_nullable_to_non_nullable
-              as int,
+      isWasted: null == isWasted
+          ? _value.isWasted
+          : isWasted // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -93,7 +94,8 @@ abstract class _$$ChallengerImplCopyWith<$Res>
       __$$ChallengerImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String name, List<Challenge> challenges, int failures});
+  $Res call(
+      {String id, String name, List<Challenge> challenges, bool isWasted});
 }
 
 /// @nodoc
@@ -112,7 +114,7 @@ class __$$ChallengerImplCopyWithImpl<$Res>
     Object? id = null,
     Object? name = null,
     Object? challenges = null,
-    Object? failures = null,
+    Object? isWasted = null,
   }) {
     return _then(_$ChallengerImpl(
       id: null == id
@@ -127,10 +129,10 @@ class __$$ChallengerImplCopyWithImpl<$Res>
           ? _value._challenges
           : challenges // ignore: cast_nullable_to_non_nullable
               as List<Challenge>,
-      failures: null == failures
-          ? _value.failures
-          : failures // ignore: cast_nullable_to_non_nullable
-              as int,
+      isWasted: null == isWasted
+          ? _value.isWasted
+          : isWasted // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -142,7 +144,7 @@ class _$ChallengerImpl implements _Challenger {
       {required this.id,
       required this.name,
       required final List<Challenge> challenges,
-      required this.failures})
+      required this.isWasted})
       : _challenges = challenges;
 
   factory _$ChallengerImpl.fromJson(Map<String, dynamic> json) =>
@@ -161,11 +163,11 @@ class _$ChallengerImpl implements _Challenger {
   }
 
   @override
-  final int failures;
+  final bool isWasted;
 
   @override
   String toString() {
-    return 'Challenger(id: $id, name: $name, challenges: $challenges, failures: $failures)';
+    return 'Challenger(id: $id, name: $name, challenges: $challenges, isWasted: $isWasted)';
   }
 
   @override
@@ -177,14 +179,14 @@ class _$ChallengerImpl implements _Challenger {
             (identical(other.name, name) || other.name == name) &&
             const DeepCollectionEquality()
                 .equals(other._challenges, _challenges) &&
-            (identical(other.failures, failures) ||
-                other.failures == failures));
+            (identical(other.isWasted, isWasted) ||
+                other.isWasted == isWasted));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, name,
-      const DeepCollectionEquality().hash(_challenges), failures);
+      const DeepCollectionEquality().hash(_challenges), isWasted);
 
   /// Create a copy of Challenger
   /// with the given fields replaced by the non-null parameter values.
@@ -207,7 +209,7 @@ abstract class _Challenger implements Challenger {
       {required final String id,
       required final String name,
       required final List<Challenge> challenges,
-      required final int failures}) = _$ChallengerImpl;
+      required final bool isWasted}) = _$ChallengerImpl;
 
   factory _Challenger.fromJson(Map<String, dynamic> json) =
       _$ChallengerImpl.fromJson;
@@ -219,7 +221,7 @@ abstract class _Challenger implements Challenger {
   @override
   List<Challenge> get challenges;
   @override
-  int get failures;
+  bool get isWasted;
 
   /// Create a copy of Challenger
   /// with the given fields replaced by the non-null parameter values.
@@ -238,6 +240,8 @@ mixin _$Challenge {
   String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   bool get isCompleted => throw _privateConstructorUsedError;
+  int get failures => throw _privateConstructorUsedError;
+  int get maxFailures => throw _privateConstructorUsedError;
 
   /// Serializes this Challenge to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -254,7 +258,12 @@ abstract class $ChallengeCopyWith<$Res> {
   factory $ChallengeCopyWith(Challenge value, $Res Function(Challenge) then) =
       _$ChallengeCopyWithImpl<$Res, Challenge>;
   @useResult
-  $Res call({String id, String name, bool isCompleted});
+  $Res call(
+      {String id,
+      String name,
+      bool isCompleted,
+      int failures,
+      int maxFailures});
 }
 
 /// @nodoc
@@ -275,6 +284,8 @@ class _$ChallengeCopyWithImpl<$Res, $Val extends Challenge>
     Object? id = null,
     Object? name = null,
     Object? isCompleted = null,
+    Object? failures = null,
+    Object? maxFailures = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -289,6 +300,14 @@ class _$ChallengeCopyWithImpl<$Res, $Val extends Challenge>
           ? _value.isCompleted
           : isCompleted // ignore: cast_nullable_to_non_nullable
               as bool,
+      failures: null == failures
+          ? _value.failures
+          : failures // ignore: cast_nullable_to_non_nullable
+              as int,
+      maxFailures: null == maxFailures
+          ? _value.maxFailures
+          : maxFailures // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -301,7 +320,12 @@ abstract class _$$ChallengeImplCopyWith<$Res>
       __$$ChallengeImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String name, bool isCompleted});
+  $Res call(
+      {String id,
+      String name,
+      bool isCompleted,
+      int failures,
+      int maxFailures});
 }
 
 /// @nodoc
@@ -320,6 +344,8 @@ class __$$ChallengeImplCopyWithImpl<$Res>
     Object? id = null,
     Object? name = null,
     Object? isCompleted = null,
+    Object? failures = null,
+    Object? maxFailures = null,
   }) {
     return _then(_$ChallengeImpl(
       id: null == id
@@ -334,6 +360,14 @@ class __$$ChallengeImplCopyWithImpl<$Res>
           ? _value.isCompleted
           : isCompleted // ignore: cast_nullable_to_non_nullable
               as bool,
+      failures: null == failures
+          ? _value.failures
+          : failures // ignore: cast_nullable_to_non_nullable
+              as int,
+      maxFailures: null == maxFailures
+          ? _value.maxFailures
+          : maxFailures // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -342,7 +376,11 @@ class __$$ChallengeImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ChallengeImpl implements _Challenge {
   const _$ChallengeImpl(
-      {required this.id, required this.name, required this.isCompleted});
+      {required this.id,
+      required this.name,
+      required this.isCompleted,
+      required this.failures,
+      required this.maxFailures});
 
   factory _$ChallengeImpl.fromJson(Map<String, dynamic> json) =>
       _$$ChallengeImplFromJson(json);
@@ -353,10 +391,14 @@ class _$ChallengeImpl implements _Challenge {
   final String name;
   @override
   final bool isCompleted;
+  @override
+  final int failures;
+  @override
+  final int maxFailures;
 
   @override
   String toString() {
-    return 'Challenge(id: $id, name: $name, isCompleted: $isCompleted)';
+    return 'Challenge(id: $id, name: $name, isCompleted: $isCompleted, failures: $failures, maxFailures: $maxFailures)';
   }
 
   @override
@@ -367,12 +409,17 @@ class _$ChallengeImpl implements _Challenge {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.isCompleted, isCompleted) ||
-                other.isCompleted == isCompleted));
+                other.isCompleted == isCompleted) &&
+            (identical(other.failures, failures) ||
+                other.failures == failures) &&
+            (identical(other.maxFailures, maxFailures) ||
+                other.maxFailures == maxFailures));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, isCompleted);
+  int get hashCode =>
+      Object.hash(runtimeType, id, name, isCompleted, failures, maxFailures);
 
   /// Create a copy of Challenge
   /// with the given fields replaced by the non-null parameter values.
@@ -394,7 +441,9 @@ abstract class _Challenge implements Challenge {
   const factory _Challenge(
       {required final String id,
       required final String name,
-      required final bool isCompleted}) = _$ChallengeImpl;
+      required final bool isCompleted,
+      required final int failures,
+      required final int maxFailures}) = _$ChallengeImpl;
 
   factory _Challenge.fromJson(Map<String, dynamic> json) =
       _$ChallengeImpl.fromJson;
@@ -405,6 +454,10 @@ abstract class _Challenge implements Challenge {
   String get name;
   @override
   bool get isCompleted;
+  @override
+  int get failures;
+  @override
+  int get maxFailures;
 
   /// Create a copy of Challenge
   /// with the given fields replaced by the non-null parameter values.

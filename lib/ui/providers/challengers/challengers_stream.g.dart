@@ -45,7 +45,7 @@ final otherChallengersStreamProvider =
 typedef OtherChallengersStreamRef
     = AutoDisposeStreamProviderRef<List<Challenger>>;
 String _$currentChallengerStreamHash() =>
-    r'ae33627ee18d59e6e0c08abba031668eb666d649';
+    r'b030d9833c38fc6e2e4b29155c43eb519e500b65';
 
 /// See also [currentChallengerStream].
 @ProviderFor(currentChallengerStream)

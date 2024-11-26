@@ -45,16 +45,20 @@ class ChallengerRepositoryImpl implements ChallengerRepository {
 
   Challenger _toChallenger(QueryDocumentSnapshot doc) {
     return Challenger(
-        id: doc['id'] as String,
-        name: doc['name'] as String,
-        failures: doc['failures'] as int,
-        challenges: []);
+      id: doc['id'] as String,
+      name: doc['name'] as String,
+      isWasted: doc['isWasted'] as bool,
+      challenges: [],
+    );
   }
 
   Challenge _toChallenge(QueryDocumentSnapshot doc) {
     return Challenge(
-        id: doc['id'] as String,
-        name: doc['name'] as String,
-        isCompleted: doc['isCompleted'] as bool);
+      id: doc['id'] as String,
+      name: doc['name'] as String,
+      isCompleted: doc['isCompleted'] as bool,
+      failures: doc['failures'] as int,
+      maxFailures: doc['maxFailures'] as int,
+    );
   }
 }

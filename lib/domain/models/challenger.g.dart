@@ -13,7 +13,7 @@ _$ChallengerImpl _$$ChallengerImplFromJson(Map<String, dynamic> json) =>
       challenges: (json['challenges'] as List<dynamic>)
           .map((e) => Challenge.fromJson(e as Map<String, dynamic>))
           .toList(),
-      failures: (json['failures'] as num).toInt(),
+      isWasted: json['isWasted'] as bool,
     );
 
 Map<String, dynamic> _$$ChallengerImplToJson(_$ChallengerImpl instance) =>
@@ -21,7 +21,7 @@ Map<String, dynamic> _$$ChallengerImplToJson(_$ChallengerImpl instance) =>
       'id': instance.id,
       'name': instance.name,
       'challenges': instance.challenges,
-      'failures': instance.failures,
+      'isWasted': instance.isWasted,
     };
 
 _$ChallengeImpl _$$ChallengeImplFromJson(Map<String, dynamic> json) =>
@@ -29,6 +29,8 @@ _$ChallengeImpl _$$ChallengeImplFromJson(Map<String, dynamic> json) =>
       id: json['id'] as String,
       name: json['name'] as String,
       isCompleted: json['isCompleted'] as bool,
+      failures: (json['failures'] as num).toInt(),
+      maxFailures: (json['maxFailures'] as num).toInt(),
     );
 
 Map<String, dynamic> _$$ChallengeImplToJson(_$ChallengeImpl instance) =>
@@ -36,4 +38,6 @@ Map<String, dynamic> _$$ChallengeImplToJson(_$ChallengeImpl instance) =>
       'id': instance.id,
       'name': instance.name,
       'isCompleted': instance.isCompleted,
+      'failures': instance.failures,
+      'maxFailures': instance.maxFailures,
     };
