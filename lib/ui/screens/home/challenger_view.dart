@@ -23,16 +23,32 @@ class ChallengerView extends ConsumerWidget {
     final challenges = ref.watch(challengesStreamProvider(challenger.id));
 
     return challenges.when(
-        data: (challenges) => content(challenges, context),
+        data: (challenges) => ChallengerContentView(
+            challenges: challenges, isCurrentChallenger: isCurrentChallenger),
         error: (error, stacktrace) {
           return Text("Oops, cannot load challenges for ${challenger.name}");
         },
         loading: () {
-          return content([], context);
+          return ChallengerContentView(
+            challenges: const [],
+            isCurrentChallenger: isCurrentChallenger,
+          );
         });
   }
+}
 
-  Column content(List<Challenge> challenges, BuildContext context) {
+class ChallengerContentView extends StatelessWidget {
+  const ChallengerContentView({
+    super.key,
+    required this.challenges,
+    required this.isCurrentChallenger,
+  });
+
+  final List<Challenge> challenges;
+  final bool isCurrentChallenger;
+
+  @override
+  Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
