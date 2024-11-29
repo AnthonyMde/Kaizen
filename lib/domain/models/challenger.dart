@@ -28,4 +28,8 @@ class Challenge with _$Challenge {
 
   factory Challenge.fromJson(Map<String, dynamic> json) =>
       _$ChallengeFromJson(json);
+
+  const Challenge._(); // Necessary to add methods to the class
+
+  bool get isFailed => failures > maxFailures;
 }
