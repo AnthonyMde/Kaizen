@@ -17,9 +17,7 @@ Stream<List<Challenger>> challengersStream(Ref ref) {
 Stream<List<Challenger>> otherChallengersStream(Ref ref) async* {
   final challengers = await ref.read(challengersStreamProvider.future);
   final account = await ref.read(accountRepositoryProvider).getAccount();
-  if (account != null) {
-    challengers.removeWhere((challenger) => challenger.id == account.id);
-  }
+  challengers.removeWhere((challenger) => challenger.id == account?.id);
   yield challengers;
 }
 
@@ -27,11 +25,7 @@ Stream<List<Challenger>> otherChallengersStream(Ref ref) async* {
 Stream<Challenger?> currentChallengerStream(Ref ref) async* {
   final challengers = await ref.watch(challengersStreamProvider.future);
   final account = await ref.watch(accountRepositoryProvider).getAccount();
-  if (account != null) {
-    final c = challengers
-    .firstWhereOrNull((challenger) => challenger.id == account.id);
-    yield c;
-    return;
-  }
-  yield null;
+  final c = challengers
+      .firstWhereOrNull((challenger) => challenger.id == account?.id);
+  yield c;
 }

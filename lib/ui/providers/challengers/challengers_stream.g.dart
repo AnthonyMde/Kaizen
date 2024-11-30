@@ -25,7 +25,7 @@ final challengersStreamProvider =
 // ignore: unused_element
 typedef ChallengersStreamRef = AutoDisposeStreamProviderRef<List<Challenger>>;
 String _$otherChallengersStreamHash() =>
-    r'17566eeec27ccf1193db702df24e0a187dd935a1';
+    r'29d84e886991b59a56ea12f77112ef57d0ebd3e2';
 
 /// See also [otherChallengersStream].
 @ProviderFor(otherChallengersStream)
@@ -45,7 +45,7 @@ final otherChallengersStreamProvider =
 typedef OtherChallengersStreamRef
     = AutoDisposeStreamProviderRef<List<Challenger>>;
 String _$currentChallengerStreamHash() =>
-    r'b030d9833c38fc6e2e4b29155c43eb519e500b65';
+    r'7d3425316ebd802553829a0817091e025274f893';
 
 /// See also [currentChallengerStream].
 @ProviderFor(currentChallengerStream)

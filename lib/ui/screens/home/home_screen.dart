@@ -5,7 +5,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:kaizen/data/repositories/providers/date_repository_provider.dart';
 import 'package:kaizen/theme/colors_extension.dart';
-import 'package:kaizen/ui/providers/challengers/challenger_actions.dart';
 import 'package:kaizen/ui/screens/home/challenger_view.dart';
 import 'package:kaizen/ui/screens/home/challengers_skeleton.dart';
 import 'package:kaizen/ui/screens/home/header.dart';
@@ -34,7 +33,8 @@ class HomeScreen extends ConsumerWidget {
               children: <Widget>[
                 SizedBox(height: Platform.isIOS ? 0 : 32),
                 Header(
-                    formattedDate: formattedDate, pastDays: pastDays.toString()),
+                    formattedDate: formattedDate,
+                    pastDays: pastDays.toString()),
                 const SizedBox(height: 32),
                 currentChallengersStream.when(
                   data: (challenger) {
@@ -44,13 +44,9 @@ class HomeScreen extends ConsumerWidget {
                     return Column(
                       children: [
                         ChallengerView(
-                            isCurrentChallenger: true,
-                            challenger: challenger,
-                            onToggleChallenge: (challenge) {
-                              ref
-                                  .read(challengerActionsProvider)
-                                  .toggleChallengeState(challenger.id, challenge);
-                            }),
+                          challenger: challenger,
+                          isCurrentChallenger: true,
+                        ),
                         const SizedBox(height: 8),
                         Divider(
                           thickness: 1,
@@ -74,13 +70,9 @@ class HomeScreen extends ConsumerWidget {
                               const SizedBox(height: 8),
                           itemCount: challengers.length,
                           itemBuilder: (context, index) => ChallengerView(
-                              challenger: challengers[index],
-                              onToggleChallenge: (challenge) {
-                                ref
-                                    .read(challengerActionsProvider)
-                                    .toggleChallengeState(
-                                        challengers[index].id, challenge);
-                              }),
+                            challenger: challengers[index],
+                            isCurrentChallenger: false,
+                          ),
                         ),
                     error: (e, stack) => Expanded(
                           child: Text(
