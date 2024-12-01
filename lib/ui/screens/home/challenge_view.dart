@@ -56,7 +56,7 @@ class ChallengeView extends StatelessWidget {
                 ),
                 const Center(
                   child: Text(
-                    "Failed",
+                    "Fail",
                     style: TextStyle(
                       color: Colors.red,
                       fontWeight: FontWeight.w900,
