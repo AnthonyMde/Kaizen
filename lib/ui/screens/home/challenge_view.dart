@@ -6,8 +6,11 @@ class ChallengeView extends StatelessWidget {
   final Challenge challenge;
   final void Function(Challenge) onToggle;
 
-  const ChallengeView(
-      {super.key, required this.challenge, required this.onToggle});
+  const ChallengeView({
+    super.key,
+    required this.challenge,
+    required this.onToggle,
+  });
 
   @override
   Widget build(BuildContext context) {
