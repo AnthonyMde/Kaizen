@@ -19,12 +19,13 @@ admin.initializeApp();
 export const resetChallengesStatus = onSchedule(
     { schedule: "0 4 * * *", timeZone: "Europe/Paris" }, async () => {
         const db = admin.firestore();
-        const challengersSnapshot = await db.collection("challengers").get();
 
-        for (const challengerDoc of challengersSnapshot.docs) {
-            const challengesSnapshot = await challengerDoc.ref.collection("challenges").get();
+        const challengersCollection = await db.collection("challengers").get();
 
-            for (const challengeDoc of challengesSnapshot.docs) {
+        for (const challengerDoc of challengersCollection.docs) {
+            const challengesCollection = await challengerDoc.ref.collection("challenges").get();
+
+            for (const challengeDoc of challengesCollection.docs) {
                 await challengeDoc.ref.update({ isCompleted: false });
             }
         }
