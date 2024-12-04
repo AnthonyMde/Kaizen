@@ -56,51 +56,56 @@ class ChallengerView extends ConsumerWidget {
                 ),
 
                 // List of challenges
-                Padding(
-                  padding: const EdgeInsets.all(8),
-                  child: ListView.separated(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    separatorBuilder: (context, index) =>
-                        const SizedBox(height: 8),
-                    itemCount: challenges.length,
-                    itemBuilder: (context, index) {
-                      return ChallengeView(
-                          challenge: challenges[index],
-                          onToggle: (challenge) {
-                            ref
-                                .read(challengerActionsProvider)
-                                .toggleChallengeState(challenger.id, challenge);
-                          });
-                    },
-                  ),
+                Stack(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8),
+                      child: ListView.separated(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        separatorBuilder: (context, index) =>
+                            const SizedBox(height: 8),
+                        itemCount: challenges.length,
+                        itemBuilder: (context, index) {
+                          return ChallengeView(
+                              challenge: challenges[index],
+                              onToggle: (challenge) {
+                                ref
+                                    .read(challengerActionsProvider)
+                                    .toggleChallengeState(
+                                        challenger.id, challenge);
+                              });
+                        },
+                      ),
+                    ),
+                    if (challenger.isWasted) ...[
+                      Positioned.fill(
+                        child: Stack(
+                          children: [
+                            Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8.0),
+                                color: const Color.fromARGB(215, 0, 0, 0),
+                              ),
+                            ),
+                            const Center(
+                              child: Text(
+                                "WASTED",
+                                style: TextStyle(
+                                  color: Colors.red,
+                                  fontWeight: FontWeight.w900,
+                                  fontSize: 40,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ],
                 ),
               ],
             ),
-            if (challenger.isWasted) ...[
-              Positioned.fill(
-                child: Stack(
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8.0),
-                        color: const Color.fromARGB(215, 0, 0, 0),
-                      ),
-                    ),
-                    const Center(
-                      child: Text(
-                        "WASTED",
-                        style: TextStyle(
-                          color: Colors.red,
-                          fontWeight: FontWeight.w900,
-                          fontSize: 40,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
           ],
         );
       },
