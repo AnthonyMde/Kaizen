@@ -15,9 +15,14 @@ Stream<List<Challenger>> challengersStream(Ref ref) {
 
 @riverpod
 Stream<List<Challenger>> otherChallengersStream(Ref ref) async* {
-  final challengers = await ref.read(challengersStreamProvider.future);
-  final account = await ref.read(accountRepositoryProvider).getAccount();
+  final challengers = await ref.watch(challengersStreamProvider.future);
+  final account = await ref.watch(accountRepositoryProvider).getAccount();
   challengers.removeWhere((challenger) => challenger.id == account?.id);
+  challengers.sort((a, b) {
+    if (a.isWasted && !b.isWasted) return 1;
+    if (!a.isWasted && b.isWasted) return -1;
+    return 0;
+  });
   yield challengers;
 }
 
